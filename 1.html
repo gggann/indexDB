@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+   DB<input type="text" value="notes" id="txtDB">
+   Version<input type="text" value="1" id="txtVersion">
+   <button id="btnCreateDB"></button>
+
+
+
+    <script>
+
+       const btnCDreateDB=document.getElementById('btnCreateDB')
+       btnCDreateDB.addEventListener('click',creatDB)
+
+        function creatDB() {
+            
+            const dbName=document.getElementById('txtDB').value
+            const dbVersion=document.getElementById('txtVersion').value
+            const request = indexedDB.open(dbName,dbVersion)
+
+            request.onupgradeneeded = e => {
+                const db=e.target.result
+                const pNotes=db.createObjectStore('personal_notes',{keypath:"title"})
+                const todoNotes=db.createObjectStore('todo_notes',{keypath:"title"})
+                alert('upgrade is called'+" "+db.name)
+            }
+            request.onsuccess = e => {
+                const db=e.target.result
+                //db.createObjectStor('notes')
+                alert('success is called'+" "+db.name)
+            }
+            request.onerror = e => {
+                alert('error'+" "+e.target.error)
+            }
+            console.log(dbName,dbVersion)
+        }
+    </script>
+</body>
+
+</html>

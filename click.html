@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .input{
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+  <input class="input">
+  <button>an</button>
+    <script>
+     document.querySelector('button').addEventListener('click',function(){
+        console.log(123)
+         input=document.querySelectorAll('.input')[0]
+         console.log(input)
+
+         input.classList.remove('input')
+         var tt=`<div>
+         <input class='input'>1
+         <input class='input'>2
+         </div>`;
+         document.querySelector('body').insertAdjacentHTML('beforeend',tt)
+     })
+    </script>
+</body>
+
+</html>
